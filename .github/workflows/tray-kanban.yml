@@ -1,0 +1,32 @@
+name: Tray Kanban release
+
+on:
+  push:
+    branches: [main]
+    paths: ['tray-kanban/**', '.github/workflows/tray-kanban.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Publish
+        run: dotnet publish tray-kanban/TrayKanban.csproj -c Release -o out
+      - name: Zip
+        run: Compress-Archive -Path out/TrayKanban.exe -DestinationPath TrayKanban.zip
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          tag="tray-kanban-latest"
+          gh release delete "$tag" --yes --cleanup-tag || true
+          gh release create "$tag" TrayKanban.zip --title "Tray Kanban (latest)" \
+            --notes "Built from ${GITHUB_SHA::7}. Download TrayKanban.zip, unzip, run TrayKanban.exe. No install needed."
