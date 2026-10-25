@@ -251,7 +251,7 @@ namespace PowerSwitcher
         public static string Parse(string spec, out int mods, out int vk)
         {
             mods = 0; vk = 0;
-            foreach (var rawPart in spec.Split('+'))
+            foreach (var rawPart in spec.Split(new[] { '+' }))
             {
                 var part = rawPart.Trim();
                 switch (part.ToLowerInvariant())
