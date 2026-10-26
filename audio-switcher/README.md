@@ -40,3 +40,7 @@ switcher tool (SoundSwitch, EarTrumpet, AudioDeviceCmdlets). This app calls
 `SetDefaultEndpoint` on it for the Console and Multimedia roles (plus
 Communications if enabled), and uses the regular `IMMDeviceEnumerator` API to list
 devices.
+
+## Licence
+
+MIT. Free to use, copy, modify and share, including commercially. See [LICENSE](LICENSE). Provided as is, with no warranty.
