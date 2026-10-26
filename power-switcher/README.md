@@ -46,3 +46,7 @@ Plans use the documented `powrprof.dll` API (`PowerEnumerate`,
 on top of the active plan, set with the undocumented
 `PowerGetEffectiveOverlayScheme` / `PowerSetActiveOverlayScheme` exports that the
 Settings app itself uses. Neither needs admin rights.
+
+## Licence
+
+MIT. Free to use, copy, modify and share, including commercially. See [LICENSE](LICENSE). Provided as is, with no warranty.
